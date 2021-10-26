@@ -229,7 +229,7 @@ int main(void)
 		  Heater = 0;
 	  }
 	  if (Mode == 0){
-		  printf("[%06d] Humi/Temp/Heator/Coolor : %d\%%/%d/%d/%d\r\n", cnt++, Humi, Cur_Temp, Heater, Coolor);
+		  printf("[%06d] Humi/Temp/Heator/Coolor : %d%%/%d/%d/%d\r\n", cnt++, Humi, Cur_Temp, Heater, Coolor);
 		  HAL_Delay(500);
 	  }
   }
