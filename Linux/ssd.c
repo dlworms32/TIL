@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
 			printf("invalid argv length\n");
 			return 0;
 		}
-		if (!check_lba(argv[2]))	{
+		if (!check_lba(argv[2])) {
 			return 0;
 		}
 		if (!check_value(argv[3])) {

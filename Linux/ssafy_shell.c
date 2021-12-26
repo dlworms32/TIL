@@ -36,6 +36,7 @@ int main()
 	return 0;
 }
 
+// history ì¶œë ¥
 void cli_history()
 {
 	for (int i = 0; i < hist_index; i++)
@@ -44,6 +45,7 @@ void cli_history()
 	}
 }
 
+// historyì˜ index ì €ì¥ëœ ëª…ë ¹ ì‹¤í–‰
 int run_history(int index)
 {
 	if (index <= hist_index)
@@ -58,12 +60,14 @@ int run_history(int index)
 	}
 }
 
+// history ì‚­ì œ
 void clear_history()
 {
 	memset(hist, 0, sizeof(hist));
 	hist_index = 0;
 }
 
+// ì…ë ¥ ëª…ë ¹ì–´ ì‹¤í–‰
 void run_cmd(const char* cmd)
 {
 	char ocmd[100] = { 0, };
@@ -79,7 +83,6 @@ void run_cmd(const char* cmd)
 
 	for (int i = 0; i < strlen(cmd); i++) {
 		if (cmd[i] == ' ') {
-			//printf("¶ç¾î¾²±â\n");
 			memcpy(ocmd, cmd, sizeof(char) * i);
 			memcpy(opt, &cmd[i + 1], sizeof(char) * (strlen(cmd) - 1 - i));
 			is_whitespace = 1;
@@ -129,12 +132,12 @@ void run_cmd(const char* cmd)
 	printf("ERROR\n");
 }
 
+// ì‰˜ ëª…ë ¹ì–´ ì…ë ¥
 void cli_shell()
 {
 	char cmd[100] = { 0, };
 	while (true)
 	{
-
 		printf("SSAFY > ");
 		//scanf("%s", cmd);
 		fgets(cmd, 100, stdin);
@@ -143,10 +146,10 @@ void cli_shell()
 		if (strcmp(cmd, "exit") == 0) return;
 		run_cmd(cmd);
 		memcpy(hist[hist_index++], cmd, sizeof(char) * strlen(cmd));
-
 	}
 }
 
+// ë©”í¬ë¡œ íŒŒì¼ ì½ì–´ì™€ ì €ì¥
 void read_macro()
 {
 	FILE* fp = fopen("macro_var.txt", "r");
@@ -171,6 +174,7 @@ void read_macro()
 	fclose(fp);
 }
 
+// ì €ì¥ëœ ë©”í¬ë¡œ ì¶œë ¥
 void print_macro()
 {
 	printf("total macro num : %d\n", macro_num);
@@ -180,6 +184,7 @@ void print_macro()
 	}
 }
 
+// ë©”í¬ë¡œ íŒŒì¼ë¡œ ì“°ê¸°
 void write_macro()
 {
 	FILE* fp = fopen("macro_var.txt", "w");
@@ -191,6 +196,7 @@ void write_macro()
 	fclose(fp);
 }
 
+// ë©”í¬ë¡œ ì¶”ê°€
 void add_macro(const char* cmd)
 {
 	char delete_space_cmd[100] = { 0, };
@@ -212,12 +218,12 @@ void add_macro(const char* cmd)
 	}
 	//printf("m_name : %s\n", m_name);
 	//printf("m_value : %s\n", m_value);
-	// Áßº¹ Á¦°Å
+	// ì¤‘ë³µ ì œê±°
 	for (int i = 0; i < macro_num; i++)
 	{
 		if (strcmp(m_name, arr[i].name) == 0)
 		{
-			printf("Áßº¹µÈ º¯¼ö¸íÀÌ ÀÖÀ½\n");
+			printf("already exists macro variable\n");
 			return;
 		}
 	}
@@ -227,6 +233,7 @@ void add_macro(const char* cmd)
 	macro_num++;
 }
 
+// ê³µë°± ì œê±°
 void delete_space(const char* cmd, char* dst, int dst_size)
 {
 	int dst_index = 0;
@@ -237,6 +244,7 @@ void delete_space(const char* cmd, char* dst, int dst_size)
 	}
 }
 
+// ë©”í¬ë¡œ ê°’ ì¶œë ¥
 void print_macro_value(const char* m_name)
 {
 	for (int i = 0; i < macro_num; i++)
@@ -247,5 +255,5 @@ void print_macro_value(const char* m_name)
 			return;
 		}
 	}
-	printf("ÇØ´ç ¸ÅÅ©·Î°¡ Á¸ÀçÇÏÁö ¾ÊÀ½\n");
+	printf("not exist macro variable mapping to %s\n", m_name);
 }

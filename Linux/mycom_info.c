@@ -19,6 +19,7 @@ int main()
 	return 0;
 }
 
+// CPU 정보 저장
 void get_cpu_info()
 {	
 	char cmd[100] = {0,};
@@ -26,6 +27,7 @@ void get_cpu_info()
 	system(cmd);
 }
 
+// 메모리 정보 저장
 void get_mem_info()
 {
 	char cmd[100] = {0,};
@@ -33,6 +35,7 @@ void get_mem_info()
 	system(cmd);
 }
 
+// CPU 정보 출력
 void print_cpu_info()
 {
 	FILE * fp = fopen(CPUINFO, "r");
@@ -57,6 +60,7 @@ void print_cpu_info()
 	printf("-------------------------------\n");
 }
 
+// 메모리 정보 출력
 void print_mem_info()
 {
 	FILE * fp = fopen(MEMINFO, "r");
@@ -78,6 +82,7 @@ void print_mem_info()
 	}
 }
 
+// KB -> MiB
 float KBtoMiB(int value)
 {
 	return value / 1049.;

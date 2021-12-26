@@ -12,13 +12,16 @@ int print_log(const char*, const char*);
 
 int main()
 {
+	// 조건 1. sd를 포함하는 로그 출력
 	if (print_kernel_log("sd") == 0)
 	{
+		// 조건 2. syste를 포함하는 로그 출력
 		print_kernel_log("syste");
 	}
 	return 0;
 }
 
+// 커널 로그 저장
 void get_kernel_log()
 {
 	char cmd[100]={0,};
@@ -26,6 +29,7 @@ void get_kernel_log()
 	system(cmd);
 }
 
+// 커널 로그 출력
 int print_kernel_log(const char* word)
 {
 	get_kernel_log();
@@ -39,7 +43,7 @@ int print_kernel_log(const char* word)
 	int cnt = 0;
 	while (true)
 	{
-		if (feof(fp) != 0)break;
+		if (feof(fp) != 0) break;
 		fgets(log_buf, sizeof(char) * BUF_SIZE, fp);
 		log_buf[strlen(log_buf) - 1] = '\0';
 		if (strlen(log_buf) == 0) break;
